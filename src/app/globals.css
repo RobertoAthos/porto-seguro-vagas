@@ -5,6 +5,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --palette-dark: #1C1E1B;       /* 01 - Dark */
+  --palette-charcoal: #2F352B;   /* 02 - Charcoal */
+  --palette-lime: #7DEF70;       /* 03 - Lime */
+  --palette-mint: #CBF1B7;       /* 04 - Mint */
+  --palette-ivory: #F3F7EC;      /* 05 - Ivory */
+  --palette-white: #F9FAF8;      /* 06 - White */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,5 +23,4 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
