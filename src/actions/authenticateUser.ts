@@ -11,7 +11,7 @@ export const authenticateUser = async ({
   password: string;
   isSignUp: boolean;
 }) => {
-  console.log("register user action");
+  
   const newUserValidation = emailAndPasswordSchema.safeParse({
     email,
     password,
