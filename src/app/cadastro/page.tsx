@@ -1,10 +1,10 @@
 import AuthComponent from "@/components/auth";
 import React from "react";
 
-export default function LoginPage() {
+export default function SignUpPage() {
   return (
     <section>
-      <AuthComponent />
+      <AuthComponent isSignUp={true}/>
     </section>
   );
 }

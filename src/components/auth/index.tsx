@@ -11,29 +11,40 @@ import {
 import { ArrowRight, Mail } from "lucide-react";
 import EmailPasswordForm from "./EmailPasswordForm";
 import { svgIcons } from "@/utils/svgIcons";
+import { useGoogle } from "./use-google";
 
-export default function LoginComponent() {
+export default function AuthComponent({
+  isSignUp = false,
+}: {
+  isSignUp?: boolean;
+}) {
   const [showEmailForm, setShowEmailForm] = useState(false);
-
+  const { signInWithGoogle } = useGoogle();
   return (
     <div className="flex items-center justify-center min-h-screen bg-palette-ivory">
-      <Card className="w-full max-w-md bg-palette-white shadow-xl border border-palette-lime/20">
+      <Card className="w-full max-w-lg bg-palette-white shadow-xl border border-palette-lime/20">
         <CardHeader className="text-center space-y-1">
           <CardTitle className="text-3xl font-bold text-palette-dark">
-            Bem vindo de volta {":)"}
+            {isSignUp ? "Crie sua conta" : "Bem vindo de volta :)"}
           </CardTitle>
           <CardDescription className="text-palette-charcoal text-lg">
             {showEmailForm
               ? "Insira suas credenciais"
+              : isSignUp
+              ? "Escolha uma das opções abaixo para se cadastrar"
               : "Escolha como vai fazer login"}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {!showEmailForm ? (
             <>
-              <button className="w-full flex gap-x-6 justify-center font-semibold items-center border rounded-lg py-3 text-palette-charcoal border-palette-charcoal hover:underline hover:text-palette-dark transition-all duration-300 shadow-sm">
+              <button
+                type="button"
+                onClick={signInWithGoogle}
+                className="w-full flex gap-x-6 justify-center font-semibold items-center border rounded-lg py-3 text-palette-charcoal border-palette-charcoal hover:underline hover:text-palette-dark transition-all duration-300 shadow-sm"
+              >
                 {svgIcons.google}
-                Continuar com conta do Google
+                {isSignUp ? "Cadastrar" : "Continuar"} com uma conta do Google
               </button>
               <div className="flex items-center justify-center space-x-2">
                 <span className="text-lg text-palette-charcoal font-medium">
@@ -45,12 +56,15 @@ export default function LoginComponent() {
                 onClick={() => setShowEmailForm(true)}
               >
                 <Mail className="mr-2 h-5 w-5" />
-                Continuar com Email
+                {isSignUp ? "Cadastrar" : "Continuar"} com Email
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
             </>
           ) : (
-            <EmailPasswordForm setShowEmailForm={setShowEmailForm} />
+            <EmailPasswordForm
+              setShowEmailForm={setShowEmailForm}
+              isSignUp={isSignUp}
+            />
           )}
         </CardContent>
       </Card>
