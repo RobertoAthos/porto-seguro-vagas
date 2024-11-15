@@ -2,14 +2,16 @@
 import { createClient } from "@/utils/supabase/server";
 import { emailAndPasswordSchema } from "@/validation/emailAndPassword";
 
-export const registerUser = async ({
+export const authenticateUser = async ({
   email,
   password,
+  isSignUp,
 }: {
   email: string;
   password: string;
+  isSignUp: boolean;
 }) => {
-  console.log("register user action")
+  console.log("register user action");
   const newUserValidation = emailAndPasswordSchema.safeParse({
     email,
     password,
@@ -24,10 +26,20 @@ export const registerUser = async ({
 
   const supabase = await createClient();
 
-  const { data, error } = supabase.auth.signUp({
-    email,
-    password,
-  });
+  let data = null;
+  let error = null;
+
+  if (!isSignUp) {
+    ({ data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    }));
+  } else {
+    ({ data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    }));
+  }
 
   if (error) {
     return {

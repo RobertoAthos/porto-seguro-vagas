@@ -8,10 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, ChevronLeft, Mail } from "lucide-react";
 import EmailPasswordForm from "./EmailPasswordForm";
 import { svgIcons } from "@/utils/svgIcons";
 import { useGoogle } from "./use-google";
+import { useRouter } from "next/navigation";
 
 export default function AuthComponent({
   isSignUp = false,
@@ -20,9 +21,21 @@ export default function AuthComponent({
 }) {
   const [showEmailForm, setShowEmailForm] = useState(false);
   const { signInWithGoogle } = useGoogle();
+  const router = useRouter();
+
+  const routerUrl = isSignUp ? "/login" : "/cadastro";
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-palette-ivory">
       <Card className="w-full max-w-lg bg-palette-white shadow-xl border border-palette-lime/20">
+        <button
+          type="button"
+          className="flex items-center gap-x-2 p-8 hover:underline"
+          onClick={() => router.back()}
+        >
+          <ChevronLeft size={30} />
+          <h3 className="text-xl">Voltar</h3>
+        </button>
         <CardHeader className="text-center space-y-1">
           <CardTitle className="text-3xl font-bold text-palette-dark">
             {isSignUp ? "Crie sua conta" : "Bem vindo de volta :)"}
@@ -67,6 +80,15 @@ export default function AuthComponent({
             />
           )}
         </CardContent>
+        <button
+          className="w-full py-2 mb-4 text-center underline hover:text-palette-dark"
+          type="button"
+          onClick={() => router.push(routerUrl)}
+        >
+          {isSignUp
+            ? "Já tem uma conta? Faça login"
+            : "Não tem uma conta? Cadastre-se"}
+        </button>
       </Card>
     </div>
   );

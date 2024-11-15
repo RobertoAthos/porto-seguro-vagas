@@ -12,7 +12,7 @@ export default function EmailPasswordForm({
   setShowEmailForm: React.Dispatch<React.SetStateAction<boolean>>;
   isSignUp: boolean;
 }) {
-  const { error, handleSubmit, isLoading, form } = useAuth();
+  const { error, handleSubmit, isLoading, form } = useAuth({isSignUp});
   const formErrors = form.formState.errors;
 
   useEffect(() => {

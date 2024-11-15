@@ -1,5 +1,4 @@
-"use client";
-import { registerUser } from "@/app/actions/handleSignUp";
+import { authenticateUser } from "@/actions/authenticateUser";
 import { emailAndPasswordSchema } from "@/validation/emailAndPassword";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -7,7 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-export const useAuth = () => {
+export const useAuth = ({isSignUp}:{isSignUp: boolean}) => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -22,9 +21,10 @@ export const useAuth = () => {
     setIsLoading(true);
 
     try {
-      const response = await registerUser({
+      const response = await authenticateUser({
         email: data.email,
         password: data.password,
+        isSignUp: isSignUp,
       });
 
       if (response.error) {
