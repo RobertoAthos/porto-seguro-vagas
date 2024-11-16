@@ -1,9 +1,30 @@
+"use client";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import React from "react";
-import { menuOptions, navOptions } from "./nav-optios";
+import { loggedActions, menuOptions, navOptions } from "./nav-optios";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { useUser } from "@/context/userContext";
+import { logout } from "@/actions/logout";
+
+export const PlatformMenu = ({ router }: { router: AppRouterInstance }) => {
+  return (
+    <nav className="border-t bg-palette-ivory text-palette-dark py-2 px-8">
+      <ul className="max-w-screen-xl m-auto flex gap-x-3 px-8">
+        {loggedActions.standardUser.map((option) => (
+          <button
+            type="button"
+            onClick={() => router.push(option.href)}
+            key={option.label}
+            className="border border-palette-dark font-medium py-1 px-3 text-base rounded-md"
+          >
+            <li className="hover:underline">{option.label}</li>
+          </button>
+        ))}
+      </ul>
+    </nav>
+  );
+};
 
 export default function PlatformHeader({
   isOpen,
@@ -26,9 +47,6 @@ export default function PlatformHeader({
             <span className="text-xl font-bold text-palette-charcoal">
               Porto Seguro Vagas
             </span>
-            <span className="text-xs">
-              Encontre vagas de emprego na terra Mãe do Brasil
-            </span>
           </div>
         </div>
         <nav className="hidden md:flex space-x-6">
@@ -37,7 +55,7 @@ export default function PlatformHeader({
               <button
                 type="button"
                 onClick={() => router.push(option.href)}
-                key={option.href}
+                key={option.label}
               >
                 <li className="hover:underline">{option.label}</li>
               </button>
@@ -68,9 +86,13 @@ export default function PlatformHeader({
               {menuOptions.map((option) => (
                 <button
                   type="button"
-                  onClick={() => router.push(option.href)}
+                  onClick={() =>
+                    option.label === "Sair"
+                      ? logout()
+                      : router.push(option.href || "/")
+                  }
                   className="w-full"
-                  key={option.href}
+                  key={option.label}
                 >
                   <a className="w-full flex items-center px-4 py-2 text-sm hover:bg-palette-ivory">
                     <option.icon className="w-4 h-4 mr-2" />

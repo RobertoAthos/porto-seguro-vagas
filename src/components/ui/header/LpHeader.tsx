@@ -28,9 +28,6 @@ export default function LpHeader({
             <span className="text-xl font-bold text-palette-charcoal">
               Porto Seguro Vagas
             </span>
-            <span className="text-sm">
-              Encontre vagas de emprego na terra Mãe do Brasil
-            </span>
           </div>
         </div>
         <nav className="hidden md:flex space-x-6">
@@ -38,8 +35,8 @@ export default function LpHeader({
             {navOptions.lp.map((option) => (
               <button
                 type="button"
-                onClick={() => router.push(option.href)}
-                key={option.href}
+                onClick={() => router.push(option.href || "/")}
+                key={option.label}
               >
                 <li className="hover:underline">{option.label}</li>
               </button>

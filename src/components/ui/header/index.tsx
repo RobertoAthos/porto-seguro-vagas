@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import LpHeader from "./LpHeader";
-import PlatformHeader from "./PlatformHeader";
+import PlatformHeader, { PlatformMenu } from "./PlatformHeader";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +52,7 @@ export default function Header() {
           setIsOpen={setIsOpen}
           router={router}
         />
+        <PlatformMenu router={router}/>
       </header>
     );
   }

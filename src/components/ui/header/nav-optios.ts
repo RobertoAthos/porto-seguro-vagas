@@ -14,7 +14,6 @@ export const menuOptions = [
   {
     label: "Sair",
     icon: LogOut,
-    href: "/",
   },
 ];
 
@@ -34,10 +33,13 @@ export const navOptions = {
     },
     {
       label: "Sobre",
-      href: "/",
     },
   ],
   platform: [
+    {
+      label: "Início",
+      href: "/ps/feed",
+    },
     {
       label: "Vagas",
       href: "/vagas",
@@ -45,6 +47,29 @@ export const navOptions = {
     {
       label: "Serviços",
       href: "/servicos-marketplace",
+    },
+  ],
+};
+
+export const loggedActions = {
+  standardUser: [
+    {
+      label: "Vagas aplicadas",
+      href: "/vagas-aplicadas",
+    },
+    {
+      label: "Serviços cadastrados",
+      href: "/meus-servicos",
+    },
+  ],
+  companyUser: [
+    {
+      label: "Vagas cadastradas",
+      href: "/vagas-cadastradas",
+    },
+    {
+      label: "Serviços cadastrados",
+      href: "/meus-servicos",
     },
   ],
 };
