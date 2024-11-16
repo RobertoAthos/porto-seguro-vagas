@@ -1,15 +1,12 @@
 "use client";
 import { createClient } from "@/utils/supabase/client";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export const useGoogle = () => {
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
-  const supabase = createClient();
+  const supabase = createClient()
 
-  const searchParams = useSearchParams();
-
-  const next = searchParams.get("next");
+  const next = '/ps/feed';
 
   async function signInWithGoogle() {
     setIsGoogleLoading(true);

@@ -18,17 +18,33 @@ export const menuOptions = [
   },
 ];
 
-export const navOptions = [
-  {
-    label: "Início",
-    href: "/",
-  },
-  {
-    label: "Vagas",
-    href: "/vagas",
-  },
-  {
-    label: "Procurar Serviços",
-    href: "/servicos-marketplace",
-  },
-];
+export const navOptions = {
+  lp: [
+    {
+      label: "Início",
+      href: "/",
+    },
+    {
+      label: "Vagas",
+      href: "/vagas",
+    },
+    {
+      label: "Marketplace de serviços",
+      href: "/servicos-marketplace",
+    },
+    {
+      label: "Sobre",
+      href: "/",
+    },
+  ],
+  platform: [
+    {
+      label: "Vagas",
+      href: "/vagas",
+    },
+    {
+      label: "Serviços",
+      href: "/servicos-marketplace",
+    },
+  ],
+};

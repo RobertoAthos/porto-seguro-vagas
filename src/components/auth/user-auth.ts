@@ -4,10 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
-export const useAuth = ({isSignUp}:{isSignUp: boolean}) => {
-  const [error, setError] = useState<string | null>(null);
+export const useAuth = ({ isSignUp }: { isSignUp: boolean }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -17,7 +17,6 @@ export const useAuth = ({isSignUp}:{isSignUp: boolean}) => {
   });
 
   const handleSubmit = async (data: z.infer<typeof emailAndPasswordSchema>) => {
-    setError(null);
     setIsLoading(true);
 
     try {
@@ -28,22 +27,21 @@ export const useAuth = ({isSignUp}:{isSignUp: boolean}) => {
       });
 
       if (response.error) {
-        setError(response.message);
+        toast.error(response.message);
       } else {
-        router.push("/");
+        router.push("/ps/feed");
       }
     } catch (error: unknown) {
       console.error(error);
-      setError("Um erro inesperado ocorreu. Por favor, tente novamente.");
+      toast.error("Um erro inesperado ocorreu. Por favor, tente novamente.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return {
-    error,
     isLoading,
     handleSubmit,
-    form
+    form,
   };
 };

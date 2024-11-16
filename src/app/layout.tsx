@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import Header from "@/components/ui/header";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={`${roboto.className} antialiased`}>
         <Providers>
           <Header />
+          <Toaster />
           <main>{children}</main>
         </Providers>
       </body>

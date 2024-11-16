@@ -1,6 +1,6 @@
 "use client";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth } from "./user-auth";
 import FieldErrorMessage from "../ui/FieldErrorMessage";
 import Spinner from "../ui/Spinner";
@@ -12,15 +12,8 @@ export default function EmailPasswordForm({
   setShowEmailForm: React.Dispatch<React.SetStateAction<boolean>>;
   isSignUp: boolean;
 }) {
-  const { error, handleSubmit, isLoading, form } = useAuth({isSignUp});
+  const { handleSubmit, isLoading, form } = useAuth({isSignUp});
   const formErrors = form.formState.errors;
-
-  useEffect(() => {
-    if (error) {
-      alert(error);
-    }
-  }, [error]);
-
   return (
     <form className="space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
       <div className="space-y-2 flex flex-col">

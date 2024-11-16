@@ -11,7 +11,6 @@ export const authenticateUser = async ({
   password: string;
   isSignUp: boolean;
 }) => {
-  
   const newUserValidation = emailAndPasswordSchema.safeParse({
     email,
     password,
@@ -29,16 +28,20 @@ export const authenticateUser = async ({
   let data = null;
   let error = null;
 
-  if (!isSignUp) {
-    ({ data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    }));
-  } else {
-    ({ data, error } = await supabase.auth.signUp({
-      email,
-      password,
-    }));
+  try {
+    if (!isSignUp) {
+      ({ data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      }));
+    } else {
+      ({ data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      }));
+    }
+  } catch (error) {
+    console.error(error);
   }
 
   if (error) {
@@ -48,7 +51,7 @@ export const authenticateUser = async ({
     };
   }
 
-  if (data.user && data.user.identities && data.user.identities.length === 0) {
+  if (data?.user && data.user.identities && data.user.identities.length === 0) {
     return {
       error: true,
       message: "Email já está sendo usado em outra conta",
