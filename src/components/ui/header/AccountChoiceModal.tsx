@@ -15,7 +15,6 @@ import { useRouter } from "next/navigation";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
   title: string;
   description: string;
 }
