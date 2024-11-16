@@ -1,18 +1,10 @@
-import LogoutButton from "@/components/ui/LogoutButton";
-import { createClient } from "@/utils/supabase/server";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import Header from "@/components/ui/header";
 
-export default async function Home() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.getUser();
-  if (error) {
-    redirect("/login");
-  }
+export default function Home() {
   return (
-    <section>
-      <h2>Nome: {data.user.email}</h2>
-      {!data.user.email ? <Link href={"/login"}>Login</Link> : <LogoutButton />}
+    <section className="bg-slate-50 h-screen">
+      <Header />
+      <p>aaa</p>
     </section>
   );
 }
