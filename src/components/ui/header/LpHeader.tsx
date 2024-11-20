@@ -44,7 +44,14 @@ export default function LpHeader({
           </ul>
         </nav>
 
-        <div className="relative">
+        <button
+          type="button"
+          onClick={() => router.push("/login")}
+          className="bg-palette-lime text-palette-charcoal font-semibold rounded-md py-2 px-8 hover:underline"
+        >
+          Entrar na lista de espera
+        </button>
+        {/* <div className="relative">
           <div className="flex gap-x-4">
             <button
               type="button"
@@ -61,7 +68,7 @@ export default function LpHeader({
               Fazer cadastro
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

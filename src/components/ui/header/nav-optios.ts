@@ -20,12 +20,12 @@ export const menuOptions = [
 export const navOptions = {
   lp: [
     {
-      label: "Início",
-      href: "/",
-    },
-    {
       label: "Vagas",
       href: "/vagas",
+    },
+    {
+      label: "Empresas",
+      href: "/",
     },
     {
       label: "Marketplace de serviços",
