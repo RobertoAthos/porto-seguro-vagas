@@ -10,9 +10,8 @@ import {
 } from "@/components/ui/card";
 import { ArrowRight, ChevronLeft, Mail } from "lucide-react";
 import EmailPasswordForm from "./EmailPasswordForm";
-import { svgIcons } from "@/utils/svgIcons";
-import { useGoogle } from "./use-google";
 import { useRouter } from "next/navigation";
+import GoogleAuthButton from "./GoogleAuthButton";
 
 export default function AuthComponent({
   isSignUp = false,
@@ -20,14 +19,13 @@ export default function AuthComponent({
   isSignUp?: boolean;
 }) {
   const [showEmailForm, setShowEmailForm] = useState(false);
-  const { signInWithGoogle } = useGoogle();
   const router = useRouter();
 
   const routerUrl = isSignUp ? "/login" : "/cadastro";
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-palette-ivory">
-      <Card className="w-full max-w-lg bg-palette-white shadow-xl border border-palette-lime/20">
+    <div className="flex items-center justify-center min-h-screen bg-white">
+      <Card className="w-full max-w-lg bg-palette-white shadow-xl border border-palette-dark">
         <button
           type="button"
           className="flex items-center gap-x-2 p-8 hover:underline"
@@ -51,14 +49,7 @@ export default function AuthComponent({
         <CardContent className="space-y-6">
           {!showEmailForm ? (
             <>
-              <button
-                type="button"
-                onClick={signInWithGoogle}
-                className="w-full flex gap-x-6 justify-center font-semibold items-center border rounded-lg py-3 text-palette-charcoal border-palette-charcoal hover:underline hover:text-palette-dark transition-all duration-300 shadow-sm"
-              >
-                {svgIcons.google}
-                {isSignUp ? "Cadastrar" : "Continuar"} com uma conta do Google
-              </button>
+              <GoogleAuthButton isSignUp={isSignUp} />
               <div className="flex items-center justify-center space-x-2">
                 <span className="text-lg text-palette-charcoal font-medium">
                   ou
