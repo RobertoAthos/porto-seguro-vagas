@@ -5,7 +5,11 @@ import { config } from "../config";
 export async function createClient() {
   const cookieStore = cookies();
 
-  return createServerClient(config.supabaseUrl!, config.supabaseAnonKey!, {
+  if (!config.supabaseUrl || !config.supabaseAnonKey) {
+    throw new Error("Supabase configuration is missing");
+  }
+  
+  return createServerClient(config.supabaseUrl, config.supabaseAnonKey, {
     cookies: {
       getAll() {
         return cookieStore.getAll();
