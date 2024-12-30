@@ -8,13 +8,22 @@ export default function FeatureSection({
 	title,
 	isCompanySection = false,
 	featureImg,
+	setTab,
+	scrollToSection,
 }: {
 	title: string;
 	description: string;
 	callToActionTxt: string;
 	isCompanySection?: boolean;
 	featureImg: string;
+	setTab: (tab: string) => void;
+	scrollToSection: (sectionId: string) => void;
 }) {
+	const handleGoToForm = () => {
+		setTab(isCompanySection ? "employer" : "employee");
+		scrollToSection("form");
+	};
+
 	const flexRow = isCompanySection ? "flex-row" : "flex-row-reverse";
 	return (
 		<div
@@ -24,7 +33,11 @@ export default function FeatureSection({
 				<h3 className="text-3xl font-bold text-secondary">{title}</h3>
 				<p>{description}</p>
 				<div className="w-full h-0.5 bg-slate-200" />
-				<PrimaryButton size="lg" text={callToActionTxt} />
+				<PrimaryButton
+					size="lg"
+					text={callToActionTxt}
+					onClick={handleGoToForm}
+				/>
 			</div>
 
 			<picture>

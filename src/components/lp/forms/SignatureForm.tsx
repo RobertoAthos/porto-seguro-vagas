@@ -2,8 +2,13 @@ import PrimaryButton from "@/components/common/PrimaryButton";
 import type React from "react";
 import { useState } from "react";
 
-export default function SignatureForm() {
-	const [tab, setTab] = useState("employee");
+export default function SignatureForm({
+	setTab,
+	tab,
+}: {
+	tab: string;
+	setTab: (tab: string) => void;
+}) {
 	const [formValues, setFormValues] = useState({});
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

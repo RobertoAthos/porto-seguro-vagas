@@ -3,9 +3,13 @@ import PrimaryButton from "@/components/common/PrimaryButton";
 import FeatureSection from "@/components/lp/common/FeatureSection";
 import SignatureForm from "@/components/lp/forms/SignatureForm";
 import Header from "@/components/lp/NavBar";
+import useScrollToView from "@/hooks/useScrollToView";
 import { Facebook, Instagram } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
+	const { scrollToSection } = useScrollToView();
+	const [formTab, setFormTab] = useState("employee");
 	return (
 		<main className="bg-slate-50">
 			<section
@@ -22,7 +26,11 @@ export default function Home() {
 						Criar vagas de empregos ou serviços temporários e candidatar-se ás
 						oportunidades tudo em um único lugar!
 					</p>
-					<PrimaryButton size="lg" text="Entrar na lista de espera" />
+					<PrimaryButton
+						size="lg"
+						text="Entrar na lista de espera"
+						onClick={() => scrollToSection("form")}
+					/>
 				</div>
 			</section>
 
@@ -48,7 +56,11 @@ export default function Home() {
 							encontrar empregos ou contratar profissionais locais.
 						</p>
 					</div>
-					<PrimaryButton size="lg" text="Seja avisado assim que lançarmos." />
+					<PrimaryButton
+						size="lg"
+						text="Seja avisado assim que lançarmos."
+						onClick={() => scrollToSection("form")}
+					/>
 				</div>
 			</section>
 
@@ -58,6 +70,8 @@ export default function Home() {
 					description="Explore uma variedade de vagas e oportunidades de serviços temporários em toda a região de Porto Seguro. Nossa plataforma conecta você às empresas que mais precisam das suas habilidades."
 					callToActionTxt="Quero encontrar vagas"
 					featureImg="/vagas-img.png"
+					scrollToSection={scrollToSection}
+					setTab={setFormTab}
 				/>
 			</section>
 			<section
@@ -70,6 +84,8 @@ export default function Home() {
 					callToActionTxt="Cadastre sua empresa antecipadamente"
 					featureImg="/empresas.png"
 					isCompanySection={true}
+					scrollToSection={scrollToSection}
+					setTab={setFormTab}
 				/>
 			</section>
 
@@ -87,7 +103,7 @@ export default function Home() {
 			</section>
 
 			<section id="form" className="w-full max-w-screen-xl m-auto px-8 py-16">
-				<SignatureForm />
+				<SignatureForm tab={formTab} setTab={setFormTab} />
 			</section>
 		</main>
 	);
