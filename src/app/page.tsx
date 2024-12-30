@@ -3,6 +3,7 @@ import PrimaryButton from "@/components/common/PrimaryButton";
 import FeatureSection from "@/components/lp/common/FeatureSection";
 import SignatureForm from "@/components/lp/forms/SignatureForm";
 import Header from "@/components/lp/NavBar";
+import { Facebook, Instagram } from "lucide-react";
 
 export default function Home() {
 	return (
@@ -70,6 +71,19 @@ export default function Home() {
 					featureImg="/empresas.png"
 					isCompanySection={true}
 				/>
+			</section>
+
+			<section
+				id="social_media"
+				className="w-full max-w-screen-xl m-auto px-8 py-16"
+			>
+				<h3 className="text-center text-secondary font-semibold text-3xl">
+					Acompanhe o desenvolvimento em nossas redes sociais
+				</h3>
+				<div className="w-full flex justify-center space-x-4 mt-8">
+					<Instagram className="h-12 w-12 hover:text-primary cursor-pointer" />
+					<Facebook className="h-12 w-12 hover:text-primary cursor-pointer" />
+				</div>
 			</section>
 
 			<section id="form" className="w-full max-w-screen-xl m-auto px-8 py-16">
