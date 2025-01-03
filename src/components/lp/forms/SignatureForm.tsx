@@ -1,6 +1,15 @@
 import PrimaryButton from "@/components/common/PrimaryButton";
+import { createClient } from "@/utils/supabase/client";
 import type React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
+
+type FormValues = {
+	name: string;
+	phone_number: string;
+	region: string;
+	company_reason: string;
+};
 
 export default function SignatureForm({
 	setTab,
@@ -9,11 +18,32 @@ export default function SignatureForm({
 	tab: string;
 	setTab: (tab: string) => void;
 }) {
-	const [formValues, setFormValues] = useState({});
+	const [formValues, setFormValues] = useState<FormValues>({
+		region: "Porto Seguro",
+	} as FormValues);
+	const [isLoading, setIsLoading] = useState(false);
+	const supabase = createClient();
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		setIsLoading(true);
 		e.preventDefault();
-		console.log(formValues);
+		const payload = {
+			name: formValues.name,
+			tel: formValues.phone_number,
+			type: tab,
+			located_at: formValues.region,
+			company_activity: formValues.company_reason || "",
+		};
+		try {
+			const response =  await supabase.from('leads').insert([payload]);
+			if(!response.error){
+				toast.success("Formulário enviado com sucesso!");
+			}
+		} catch (e: any) {
+			toast.error("Erro ao enviar formulário. Tente novamente.");
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (
@@ -47,40 +77,7 @@ export default function SignatureForm({
 						<input
 							type="text"
 							placeholder="Seu nome"
-							onChange={(e) =>
-								setFormValues({ ...formValues, full_name: e.target.value })
-							}
-							className="w-full p-4 border border-slate-200 rounded-lg"
-							required
-						/>
-						<input
-							type="tel"
-							placeholder="Seu telefone (DDD) 9 XXXX-XXXX"
-							onChange={(e) =>
-								setFormValues({ ...formValues, phone_number: e.target.value })
-							}
-							className="w-full p-4 border border-slate-200 rounded-lg"
-							required
-						/>
-						<select
-							onChange={(e) =>
-								setFormValues({ ...formValues, region: e.target.value })
-							}
-							className="w-full p-4 border border-slate-200 rounded-lg"
-						>
-							<option value="0">Selecione a região que você mora</option>
-							<option value="1">Porto Seguro</option>
-							<option value="2">Arraial D´Ajuda</option>
-							<option value="3">Trancoso</option>
-							<option value="4">Outra</option>
-						</select>
-						<PrimaryButton size="lg" text="Inscrever-se" type="submit" />
-					</div>
-				) : (
-					<div className="flex flex-col space-y-4">
-						<input
-							type="text"
-							placeholder="Nome da empresa"
+							value={formValues.name}
 							onChange={(e) =>
 								setFormValues({ ...formValues, name: e.target.value })
 							}
@@ -90,6 +87,52 @@ export default function SignatureForm({
 						<input
 							type="tel"
 							placeholder="Seu telefone (DDD) 9 XXXX-XXXX"
+							value={formValues.phone_number}
+							onChange={(e) =>
+								setFormValues({ ...formValues, phone_number: e.target.value })
+							}
+							className="w-full p-4 border border-slate-200 rounded-lg"
+							required
+						/>
+						<label>Onde você reside atualmente?</label>
+						<select
+							onChange={(e) =>
+								setFormValues({ ...formValues, region: e.target.value })
+							}
+							defaultValue={formValues.region}
+							className="w-full p-4 border border-slate-200 rounded-lg"
+						>
+							<option value="Porto Seguro">Porto Seguro</option>
+							<option value="Arraial D´Ajuda">Arraial D´Ajuda</option>
+							<option value="Trancoso">Trancoso</option>
+							<option value="Outro">Outro</option>
+						</select>
+						<PrimaryButton
+							size="lg"
+							text="Inscrever-se"
+							type="submit"
+							isLoading={{
+								state: isLoading,
+								text: "Enviando...",
+							}}
+						/>
+					</div>
+				) : (
+					<div className="flex flex-col space-y-4">
+						<input
+							type="text"
+							value={formValues.name}
+							placeholder="Nome da empresa"
+							onChange={(e) =>
+								setFormValues({ ...formValues, name: e.target.value })
+							}
+							className="w-full p-4 border border-slate-200 rounded-lg"
+							required
+						/>
+						<input
+							type="tel"
+							value={formValues.phone_number}
+							placeholder="Seu telefone (DDD) 9 XXXX-XXXX"
 							onChange={(e) =>
 								setFormValues({ ...formValues, phone_number: e.target.value })
 							}
@@ -98,6 +141,7 @@ export default function SignatureForm({
 						/>
 						<input
 							type="text"
+							value={formValues.company_reason}
 							placeholder="Ramo de atividade"
 							onChange={(e) =>
 								setFormValues({ ...formValues, company_reason: e.target.value })
@@ -106,7 +150,15 @@ export default function SignatureForm({
 							required
 						/>
 
-						<PrimaryButton size="lg" text="Inscrever-se" type="submit" />
+						<PrimaryButton
+							size="lg"
+							text="Inscrever-se"
+							type="submit"
+							isLoading={{
+								state: isLoading,
+								text: "Enviando...",
+							}}
+						/>
 					</div>
 				)}
 			</form>
