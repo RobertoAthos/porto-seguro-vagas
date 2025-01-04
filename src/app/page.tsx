@@ -90,6 +90,7 @@ export default function Home() {
 						isCompanySection={false}
 						scrollToSection={scrollToSection}
 						setTab={setFormTab}
+						className="flex flex-col md:flex-row-reverse"
 					/>
 				</AnimationReveal>
 			</section>
@@ -106,6 +107,7 @@ export default function Home() {
 						isCompanySection={true}
 						scrollToSection={scrollToSection}
 						setTab={setFormTab}
+						className="flex flex-col md:flex-row"
 					/>
 				</AnimationReveal>
 			</section>
