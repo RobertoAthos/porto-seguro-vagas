@@ -5,7 +5,7 @@ import React from "react";
 export default function DesktopNavBar() {
 	const { scrollToSection } = useScrollToView();
 	return (
-		<div className="w-full text-white py-16 px-8">
+		<div className="w-full bg-white text-secondary border-b  py-6 px-8">
 			<div className="w-full max-w-screen-xl m-auto flex items-center justify-between">
 				<h1 className="text-xl md:text-3xl font-semibold">PortoSeguroVagas</h1>
 				<nav className="hidden lg:block">

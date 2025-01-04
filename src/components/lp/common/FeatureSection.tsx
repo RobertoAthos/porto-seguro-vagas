@@ -24,19 +24,17 @@ export default function FeatureSection({
 		scrollToSection("form");
 	};
 
-	const flexRow = isCompanySection ? "flex-row" : "flex-row-reverse";
-
 	return (
 		<div
-			className={`flex flex-col md:${flexRow} justify-between items-center md:items-stretch gap-6 md:gap-12`}
+			className={`flex flex-col md:${
+				isCompanySection ? "flex-row" : "flex-row-reverse"
+			} justify-between items-center md:items-stretch gap-6 md:gap-12`}
 		>
 			<div className="w-full md:w-2/3 space-y-6 md:space-y-12">
 				<h3 className="text-2xl md:text-3xl font-bold text-secondary text-left">
 					{title}
 				</h3>
-				<p className="text-base md:text-lg text-left">
-					{description}
-				</p>
+				<p className="text-base md:text-lg text-left">{description}</p>
 				<div className="w-full h-0.5 bg-slate-200" />
 				<div className="flex justify-center md:justify-start">
 					<PrimaryButton
@@ -47,7 +45,7 @@ export default function FeatureSection({
 				</div>
 			</div>
 
-			<div className="">
+			<picture>
 				<Image
 					src={featureImg}
 					alt={title}
@@ -56,7 +54,7 @@ export default function FeatureSection({
 					className="w-full max-w-full h-auto object-cover rounded-lg"
 					priority
 				/>
-			</div>
+			</picture>
 		</div>
 	);
 }

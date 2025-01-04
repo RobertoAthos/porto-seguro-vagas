@@ -5,6 +5,7 @@ import SignatureForm from "@/components/lp/forms/SignatureForm";
 import Header from "@/components/lp/NavBar";
 import useScrollToView from "@/hooks/useScrollToView";
 import { Facebook, Instagram } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
@@ -12,17 +13,14 @@ export default function Home() {
 	const [formTab, setFormTab] = useState("employee");
 	return (
 		<main className="bg-slate-50">
-			<section
-				id="hero"
-				className="w-full flex-col text-center h-[75vh] bg-hero-bg bg-cover bg-center"
-			>
-				<Header />
-				<div className="w-full max-w-screen-xl m-auto px-8 space-y-12 md:mt-24">
-					<h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-white leading-10 md:leading-[60px]">
+			<Header />
+			<section id="hero" className="w-full bg-white md:rounded-b-3xl md:shadow max-w-screen-xl m-auto flex flex-col lg:flex-row justify-center md:justify-between">
+				<div className="w-full lg:w-2/3 px-8 space-y-8 md:space-y-12 mt-12 lg:mt-32">
+					<h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-secondary md:leading-[60px]">
 						Vagas de emprego em Porto Seguro, Arraial D´Ajuda e Trancoso
 						Conecte-se às Melhores Oportunidades da Região!
 					</h1>
-					<p className="text-white font-medium text-sm md:text-base">
+					<p className="w-full max-w-2xl text-secondary font-medium text-sm md:text-base">
 						Criar vagas de empregos ou serviços temporários e candidatar-se ás
 						oportunidades tudo em um único lugar!
 					</p>
@@ -32,6 +30,14 @@ export default function Home() {
 						onClick={() => scrollToSection("form")}
 					/>
 				</div>
+				<Image
+					src={"/hero.jpg"}
+					alt={"Trabalhadores em Porto Seguro"}
+					width={300}
+					height={300}
+					className="w-auto h-auto object-cover p-8 mt-12 lg:mt-0 md:p-0"
+					priority
+				/>
 			</section>
 
 			<section id="about" className="w-full max-w-screen-xl m-auto px-8 py-16">
@@ -70,6 +76,7 @@ export default function Home() {
 					description="Explore uma variedade de vagas e oportunidades de serviços temporários em toda a região de Porto Seguro. Nossa plataforma conecta você às empresas que mais precisam das suas habilidades."
 					callToActionTxt="Quero encontrar vagas"
 					featureImg="/vagas-img.png"
+					isCompanySection={false}
 					scrollToSection={scrollToSection}
 					setTab={setFormTab}
 				/>
@@ -91,7 +98,7 @@ export default function Home() {
 
 			<section
 				id="social_media"
-				className="w-full max-w-screen-xl m-auto px-8 py-16"
+				className="w-full bg-white rounded-3xl shadow-sm max-w-screen-xl m-auto px-8 py-16"
 			>
 				<h3 className="text-center text-secondary font-semibold text-3xl">
 					Acompanhe o desenvolvimento em nossas redes sociais
