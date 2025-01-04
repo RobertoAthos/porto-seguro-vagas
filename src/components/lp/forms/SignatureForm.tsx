@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/client";
 import type React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 type FormValues = {
 	name: string;
@@ -35,9 +36,14 @@ export default function SignatureForm({
 			company_activity: formValues.company_reason || "",
 		};
 		try {
-			const response =  await supabase.from('leads').insert([payload]);
-			if(!response.error){
-				toast.success("Formulário enviado com sucesso!");
+			const response = await supabase.from("leads").insert([payload]);
+			if (!response.error) {
+				Swal.fire({
+					title: "Obrigado! Seu formulário foi enviado com sucesso.",
+					text: "Aguarde novidades do nosso lançamento",
+					icon: "success",
+					confirmButtonText: "Ok",
+				});
 			}
 		} catch (e: any) {
 			toast.error("Erro ao enviar formulário. Tente novamente.");
