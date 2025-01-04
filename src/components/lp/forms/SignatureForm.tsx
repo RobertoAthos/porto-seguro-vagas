@@ -48,22 +48,22 @@ export default function SignatureForm({
 
 	return (
 		<div className="w-full space-y-8 max-w-4xl m-auto py-16">
-			<h4 className="text-3xl text-secondary font-semibold text-center">
+			<h4 className="text-2xl md:text-3xl text-secondary font-semibold text-center">
 				Inscreva-se e seja avisado quando lançarmos oficialmente
 			</h4>
 			<div className="w-full flex justify-evenly text-left space-x-8">
 				<button
 					type="button"
-					className={`border w-full py-1 px-2 rounded-full ${
+					className={`border text-base w-full py-1 px-2 rounded-full ${
 						tab === "employee" ? "bg-primary text-white" : ""
 					}`}
 					onClick={() => setTab("employee")}
 				>
-					Quero achar vagas
+					Quero encontrar vagas
 				</button>
 				<button
 					type="button"
-					className={`border w-full py-1 px-2 rounded-full ${
+					className={`border text-base w-full py-1 px-2 rounded-full ${
 						tab === "employer" ? "bg-primary text-white" : ""
 					}`}
 					onClick={() => setTab("employer")}

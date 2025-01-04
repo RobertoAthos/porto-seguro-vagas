@@ -23,7 +23,7 @@ export default function PrimaryButton({
 			type="button"
 			disabled={isLoading}
 			{...rest}
-			className={`bg-primary rounded-full text-white font-medium hover:underline ${sizeClasses[size]}`}
+			className={`bg-primary text-sm md:text-base rounded-full text-white font-medium hover:underline ${sizeClasses[size]}`}
 		>
 			{isLoading ? loadingText : text}
 		</button>

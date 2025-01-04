@@ -9,7 +9,7 @@ export default function Footer() {
 		<footer className="w-full py-6 bg-white">
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-					<div className="flex flex-col items-start">
+					<div className="flex flex-col items-center md:items-start">
 						<button
 							type="button"
 							onClick={() => scrollToSection("hero")}

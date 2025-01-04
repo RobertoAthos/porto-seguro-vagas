@@ -17,12 +17,12 @@ export default function Home() {
 				className="w-full flex-col text-center h-[75vh] bg-hero-bg bg-cover bg-center"
 			>
 				<Header />
-				<div className="w-full max-w-screen-xl m-auto px-8 space-y-12 mt-24">
-					<h1 className="text-4xl font-semibold text-white leading-[60px]">
+				<div className="w-full max-w-screen-xl m-auto px-8 space-y-12 md:mt-24">
+					<h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-white leading-10 md:leading-[60px]">
 						Vagas de emprego em Porto Seguro, Arraial D´Ajuda e Trancoso
 						Conecte-se às Melhores Oportunidades da Região!
 					</h1>
-					<p className="text-white font-medium text-base">
+					<p className="text-white font-medium text-sm md:text-base">
 						Criar vagas de empregos ou serviços temporários e candidatar-se ás
 						oportunidades tudo em um único lugar!
 					</p>

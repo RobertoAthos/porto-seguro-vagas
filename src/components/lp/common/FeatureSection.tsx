@@ -25,30 +25,38 @@ export default function FeatureSection({
 	};
 
 	const flexRow = isCompanySection ? "flex-row" : "flex-row-reverse";
+
 	return (
 		<div
-			className={`flex gap-x-12 ${flexRow} justify-between space-y-8 md:space-y-0`}
+			className={`flex flex-col md:${flexRow} justify-between items-center md:items-stretch gap-6 md:gap-12`}
 		>
-			<div className="w-2/3 space-y-12">
-				<h3 className="text-3xl font-bold text-secondary">{title}</h3>
-				<p>{description}</p>
+			<div className="w-full md:w-2/3 space-y-6 md:space-y-12">
+				<h3 className="text-2xl md:text-3xl font-bold text-secondary text-left">
+					{title}
+				</h3>
+				<p className="text-base md:text-lg text-left">
+					{description}
+				</p>
 				<div className="w-full h-0.5 bg-slate-200" />
-				<PrimaryButton
-					size="lg"
-					text={callToActionTxt}
-					onClick={handleGoToForm}
-				/>
+				<div className="flex justify-center md:justify-start">
+					<PrimaryButton
+						size="lg"
+						text={callToActionTxt}
+						onClick={handleGoToForm}
+					/>
+				</div>
 			</div>
 
-			<picture>
+			<div className="">
 				<Image
 					src={featureImg}
 					alt={title}
 					width={400}
 					height={400}
-					className="w-auto h-auto object-cover rounded-lg"
+					className="w-full max-w-full h-auto object-cover rounded-lg"
+					priority
 				/>
-			</picture>
+			</div>
 		</div>
 	);
 }
