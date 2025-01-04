@@ -45,7 +45,9 @@ export default function SignatureForm({
 					confirmButtonText: "Ok",
 				});
 			}
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (e: any) {
+			console.log(e.message);
 			toast.error("Erro ao enviar formulário. Tente novamente.");
 		} finally {
 			setIsLoading(false);
