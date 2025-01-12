@@ -45,7 +45,7 @@ export default function Footer() {
 
 					<div className="flex items-center space-x-4">
 						<Link
-							href="https://twitter.com"
+							href="https://www.instagram.com/portosegurovagas_oficial/"
 							target="_blank"
 							className="text-gray-400 hover:text-gray-600"
 							aria-label="Twitter"
@@ -53,7 +53,7 @@ export default function Footer() {
 							<Instagram className="h-5 w-5" />
 						</Link>
 						<Link
-							href="https://facebook.com"
+							href="https://www.facebook.com/profile.php?id=61571921515785"
 							target="_blank"
 							className="text-gray-400 hover:text-gray-600"
 							aria-label="Facebook"

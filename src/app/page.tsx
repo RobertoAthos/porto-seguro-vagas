@@ -7,6 +7,7 @@ import Header from "@/components/lp/NavBar";
 import useScrollToView from "@/hooks/useScrollToView";
 import { Facebook, Instagram } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -121,8 +122,18 @@ export default function Home() {
 						Acompanhe o desenvolvimento em nossas redes sociais
 					</h3>
 					<div className="w-full flex justify-center space-x-4 mt-8">
-						<Instagram className="h-12 w-12 hover:text-primary cursor-pointer" />
-						<Facebook className="h-12 w-12 hover:text-primary cursor-pointer" />
+						<Link
+							href={"https://www.instagram.com/portosegurovagas_oficial/"}
+							target="_blank"
+						>
+							<Instagram className="h-12 w-12 hover:text-primary cursor-pointer" />
+						</Link>
+						<Link
+							href={"https://www.facebook.com/profile.php?id=61571921515785"}
+							target="_blank"
+						>
+							<Facebook className="h-12 w-12 hover:text-primary cursor-pointer" />
+						</Link>
 					</div>
 				</AnimationReveal>
 			</section>
