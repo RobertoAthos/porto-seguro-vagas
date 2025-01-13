@@ -93,12 +93,17 @@ export default function SignatureForm({
 							required
 						/>
 						<input
-							type="tel"
-							placeholder="Seu telefone (DDD) 9 XXXX-XXXX"
+							type="text"
 							value={formValues.phone_number}
-							onChange={(e) =>
-								setFormValues({ ...formValues, phone_number: e.target.value })
-							}
+							placeholder="Seu telefone (DDD) 9XXXX-XXXX"
+							onChange={(e) => {
+								const rawValue = e.target.value.replace(/\D/g, "");
+								const maskedValue = rawValue
+									.replace(/^(\d{2})(\d)/g, "($1) $2") // Format DDD
+									.replace(/(\d{5})(\d)/, "$1-$2") // Format first 5 digits and hyphen
+									.replace(/(-\d{4})\d+?$/, "$1"); // Limit to 4 digits after hyphen
+								setFormValues({ ...formValues, phone_number: maskedValue });
+							}}
 							className="w-full p-4 border border-slate-200 rounded-lg"
 							required
 						/>
@@ -138,12 +143,17 @@ export default function SignatureForm({
 							required
 						/>
 						<input
-							type="tel"
+							type="text"
 							value={formValues.phone_number}
 							placeholder="Seu telefone (DDD) 9 XXXX-XXXX"
-							onChange={(e) =>
-								setFormValues({ ...formValues, phone_number: e.target.value })
-							}
+							onChange={(e) => {
+								const rawValue = e.target.value.replace(/\D/g, "");
+								const maskedValue = rawValue
+									.replace(/^(\d{2})(\d)/g, "($1) $2") // Format DDD
+									.replace(/(\d{5})(\d)/, "$1-$2") // Format first 5 digits and hyphen
+									.replace(/(-\d{4})\d+?$/, "$1"); // Limit to 4 digits after hyphen
+								setFormValues({ ...formValues, phone_number: maskedValue });
+							}}
 							className="w-full p-4 border border-slate-200 rounded-lg"
 							required
 						/>
