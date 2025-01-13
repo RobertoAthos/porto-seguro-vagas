@@ -8,11 +8,23 @@ import useScrollToView from "@/hooks/useScrollToView";
 import { Facebook, Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Clarity from "@microsoft/clarity";
 
 export default function Home() {
 	const { scrollToSection } = useScrollToView();
 	const [formTab, setFormTab] = useState("employee");
+	const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY_ID;
+	const ENV = process.env.NODE_ENV;
+
+	useEffect(() => {
+		if (clarityProjectId && ENV === "production") {
+			Clarity.init(clarityProjectId);
+		} else {
+			console.log("dev mode");
+		}
+	}, [clarityProjectId, ENV]);
+
 	return (
 		<main className="bg-slate-50">
 			<Header />
@@ -27,8 +39,8 @@ export default function Home() {
 							Conecte-se às Melhores Oportunidades da Região!
 						</h1>
 						<p className="w-full max-w-2xl text-secondary font-medium text-sm md:text-base">
-							Criar vagas de empregos ou serviços temporários e candidatar-se ás
-							oportunidades tudo em um único lugar!
+							Crie vagas ou encontre oportunidades de emprego e serviços
+							temporários, tudo em um só lugar!
 						</p>
 						<PrimaryButton
 							size="lg"

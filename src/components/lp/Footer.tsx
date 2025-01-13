@@ -64,8 +64,8 @@ export default function Footer() {
 				</div>
 
 				<div className="mt-6 text-center text-gray-500 text-sm">
-					Criar vagas de empregos ou serviços temporários e candidatar-se às
-					oportunidades tudo em um único lugar!
+					Crie vagas ou encontre oportunidades de emprego e serviços
+					temporários, tudo em um só lugar!
 				</div>
 			</div>
 		</footer>
